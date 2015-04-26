@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular Geocoding Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body ng-app="GeocodingDemo">
+    <h1 class="center">Angular Geocoding Demo</h1>
+    <br>
+    <p class="center">Enter an address to find it's geolocation</p> 
+    <br>
+    <form ng-controller="DemoController" class="center">
+        <input type="text" placeholder="Enter an address here to find it's geolocation" ng-model="query" class="center">
+        <br>
+        <br>
+        <button ng-click="doSearch(query)">Search!</button>
+        <p ng-hide="result.length == 0">Geolocation:  {{ result | json }}</p>
+    </form>
+</body>
+</html>

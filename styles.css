@@ -1,0 +1,8 @@
+.center {
+    text-align: center;
+    margin: 0 auto;
+}
+
+input {
+    min-width: 300px;
+}
