@@ -1,35 +1,22 @@
 var module = angular.module("GeocodingDemo", []);
 
-// Setup a controller with support for promises & access to scope variables
-module.controller("DemoController", function ($q, $scope) {
-    $scope.query = $scope.query || "";
+// Setup a controller with support for access to scope variables
+module.controller("DemoController", function ($scope) {
+    $scope.address = $scope.address || "";
     $scope.result = $scope.result || "";
 
-    $scope.doSearch = function(query) {
-        addressToGeolocation(query).then(function(geolocation) {
-            $scope.result = geolocation;
-        });
-    };
-
-    // This function returns a promise
-    function addressToGeolocation(address) {
-        var deferred = $q.defer();
-        
+    $scope.doSearch = function(address) {
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({'address': address}, function(results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
-                    deferred.resolve({
-                        lat: results[0].geometry.location.lat(),
-                        lon: results[0].geometry.location.lng()
-                    });
-                }
-                else {
-                    console.error("Getting geolocation from address failed. Status: ", status);
-                    deferred.resolve({"error": "geocoding failed"});
-                }
-                
+            if (status === google.maps.GeocoderStatus.OK) {
+                $scope.result = {
+                    lat: results[0].geometry.location.lat(),
+                    lon: results[0].geometry.location.lng()
+                };
             }
-        );
-        return deferred.promise;
-    }
+            else {
+                console.error("Getting geolocation from address failed. Status: ", status);
+            }
+        });
+    };
 });

@@ -10,13 +10,13 @@
 <body ng-app="GeocodingDemo">
     <h1 class="center">Angular Geocoding Demo</h1>
     <br>
-    <p class="center">Enter an address to find it's geolocation</p> 
+    <p class="center">Enter an address to find its geolocation</p> 
     <br>
     <form ng-controller="DemoController" class="center">
-        <input type="text" placeholder="Enter an address here to find it's geolocation" ng-model="query" class="center">
+        <input type="text" placeholder="Enter an address here to find its geolocation" ng-model="address" class="center">
         <br>
         <br>
-        <button ng-click="doSearch(query)">Search!</button>
+        <button ng-click="doSearch(address)">Search!</button>
         <p ng-hide="result.length == 0">Geolocation:  {{ result | json }}</p>
     </form>
 </body>
